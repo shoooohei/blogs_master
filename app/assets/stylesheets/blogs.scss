@@ -1,9 +1,5 @@
 html{
   min-height: 100%;
-}
-
-body {
-  height: 100%;
   position: relative;
 }
 
@@ -35,6 +31,10 @@ body {
 }
 
 .btn_new_article {
+  margin-bottom: 50px;
+}
+
+.btn_back_to_index {
   margin-bottom: 50px;
 }
 
