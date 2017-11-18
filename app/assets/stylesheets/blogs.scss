@@ -1,5 +1,9 @@
 html{
   min-height: 100%;
+}
+
+body {
+  height: 100%;
   position: relative;
 }
 
@@ -28,6 +32,10 @@ html{
   position: absolute;
   top: 150px;
   right: 50px;
+}
+
+.btn_new_article {
+  margin-bottom: 50px;
 }
 
 footer {
