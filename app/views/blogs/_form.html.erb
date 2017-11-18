@@ -1,0 +1,33 @@
+<%= form_with(model: @blog, local: true) do |form| %>
+  <% if @blog.errors.any? %>
+      <div id="error_explanation">
+        <h2><%= @blog.errors.count %>件のエラーがあります。</h2>
+        <ul>
+          <% @blog.errors.full_messages.each do |msg| %>
+            <li><%= msg %></li>
+          <% end %>
+        </ul>
+      </div>
+  <% end %>
+
+  <div class="panel panel-default">
+    <div class="panel-heading">
+      <%= @page_title %>
+    </div>
+    <table class="table">
+      <tr>
+        <th><%= form.label :title %></th>
+        <td><%= form.text_field :title %></td>
+      </tr>
+      <tr>
+        <th><%= form.label :content %></th>
+        <td><%= form.text_area :content %></td>
+      </tr>
+      <tr>
+        <th></th>
+        <td><%= form.submit "#{@button}", class: 'btn btn-default' %></td>
+      </tr>
+    </table>
+  </div>
+<%= link_to "記事一覧へ", blogs_path, class: 'btn btn-default' %>
+<% end %>

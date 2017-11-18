@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Blog</title>
+    <%= csrf_meta_tags %>
+
+    <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload' %>
+    <%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
+  </head>
+
+  <body>
+    <header>
+      <nav class="navbar navbar-default">
+        <div class="container-fluid">
+          <div class="navbar-header">
+            <a class="navbar-brand" href="#">Blogs</a>
+          </div>
+        </div>
+      </nav>
+    </header>
+
+    <div class="container">
+      <div class="row">
+        <div class="blog_title">
+          <%= image_tag 'top.jpg', class: 'top_image col-xs-12' %>
+          <h1 id="title">Blog by Shohei</h1>
+          <p id="app_explanation">記事の投稿・編集(更新)・一覧表示・削除機能があります！</p>
+          <p id="saying">Life can be much broader once you discover one simple fact: Everything around you that you call life was made up by people that were no smarter than you and you can change it, you can influence it, you can build your own things that other people can use.</p>
+        </div>
+
+    <%= yield %>
+
+      </div>
+    </div>
+
+    <footer>
+      <p>9月期生 川崎翔平</p>
+
+  </body>
+</html>

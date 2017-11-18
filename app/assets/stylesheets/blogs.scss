@@ -1,0 +1,48 @@
+html{
+  min-height: 100%;
+  position: relative;
+}
+
+.blog_title {
+  position: relative;
+}
+
+#title {
+  position: absolute;
+  left: 40px;
+  color: #fff;
+}
+
+#app_explanation {
+  color: #fff;
+  position: absolute;
+  top: 25px;
+  left: 350px;
+  width: 240px;
+}
+
+#saying {
+  width: 350px;
+  height: 100px;
+  font-style: italic;
+  position: absolute;
+  top: 150px;
+  right: 50px;
+}
+
+footer {
+  height: 40px;
+  background-color: #2f4f4f;
+  color: #fff;
+  width: 100%;
+  margin: auto;
+  position: absolute;
+  bottom: 0;
+  text-align: center;
+  display: table;
+}
+
+footer p{
+  display: table-cell;
+  vertical-align: middle;
+}
