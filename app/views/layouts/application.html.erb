@@ -14,6 +14,18 @@
         <div class="container-fluid">
           <div class="navbar-header">
             <a class="navbar-brand" href="#">Blogs</a>
+            <ul class="nav navbar-nav">
+
+                <% if logged_in? %>
+                  <li><%= link_to "記事一覧", blogs_path %></li>
+                  <li><%= link_to "Logout", session_path(current_user.id), method: :delete %></li>
+                  <li><%= link_to "#{@current_user.name}さん", blogs_path %></li>
+                <% else %>
+                  <li><%= link_to "Sign up", new_user_path %></li>
+                  <li><%= link_to "Login", new_session_path %></li>
+                <% end %>
+
+            </ul>
           </div>
         </div>
       </nav>
@@ -27,6 +39,11 @@
           <p id="app_explanation">記事の投稿・編集(更新)・一覧表示・削除機能があります！</p>
           <p id="saying">Life can be much broader once you discover one simple fact: Everything around you that you call life was made up by people that were no smarter than you and you can change it, you can influence it, you can build your own things that other people can use.</p>
         </div>
+
+        <% flash.each do |key, value| %>
+          <%= content_tag(:div, value, class: "#{key}") %>
+        <% end %>
+
 
     <%= yield %>
 

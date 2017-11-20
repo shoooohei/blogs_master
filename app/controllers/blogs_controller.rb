@@ -1,14 +1,26 @@
 class BlogsController < ApplicationController
   before_action :set_blog, only: [:edit, :update, :destroy]
+  before_action :check_logging_in, only: [:new, :edit, :index, :destroy]
 
   def index
     @blog = Blog.order(created_at: :desc)
   end
 
   def new
-    @blog = Blog.new
     @button = "投稿する"
     @page_title = "記事を新しく書く"
+    if params[:back]
+      @blog = Blog.new(blog_params)
+    else
+      @blog = Blog.new
+    end
+  end
+
+  def confirm
+    @blog = Blog.new(blog_params)
+    @button = "投稿する"
+    @page_title = "記事を新しく書く"
+    render :new if @blog.invalid?
   end
 
   def create
@@ -48,5 +60,12 @@ class BlogsController < ApplicationController
   def set_blog
     @blog = Blog.find(params[:id])
   end
+
+  def check_logging_in
+    unless logged_in?
+      redirect_to new_user_path
+    end
+  end
+
 
 end
