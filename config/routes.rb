@@ -8,5 +8,7 @@ Rails.application.routes.draw do
   end
 
   resources :users, only: [:new, :create]
+  
+  resources :favorites, only: [:create, :destroy]
 
 end
