@@ -1,0 +1,43 @@
+
+<h4>&nbsp;</h4>
+<div class="panel panel-default">
+  <div class="panel-heading"><h4><%= @table_name %></h4>
+  </div>
+  <table class="table">
+    <tr>
+        <th>タイトル</td>
+        <th>本文</th>
+        <th>作成日</th>
+    </tr>
+    <% @blogs.each do |blog| %>
+      <tr>
+          <td><%= blog.title %></td>
+          <td><%= blog.content %></td>
+          <td><%= blog.created_at.strftime("%Y年%m月%d日 %H:%M") %></td>
+          <% if blog.user_id == current_user.id %>
+            <td><%= link_to "編集する", edit_blog_path(blog.id), class: 'btn btn-success' %></td>
+            <td><%= link_to "削除する", blog_path(blog.id),
+                    data: { confirm: "本当に削除してもよろしいですか？"},
+                    method: :delete, class: 'btn btn-warning' %></td>
+          <% end %>
+          <% unless blog.user_id == current_user.id %>
+          <% if (current_user.favorites.find_by(blog_id: blog.id)).present? %>
+            <td><%= link_to 'お気に入り解除', favorite_path(blog.id, @check),
+                data: { confirm: "お気に入り解除しますか？" },
+                method: :delete, class: 'btn btn-primary' %></td>
+            <td>&nbsp;</td>
+          <% else %>
+            <td><%= link_to "お気に入り登録", favorites_path(blog_id: blog.id),
+                data: { confirm: "お気に入り登録しますか？" },
+                method: :post, class: 'btn btn-danger' %></td>
+            <td>&nbsp;</td>
+            <% end %>
+          <% end %>
+      </tr>
+    <% end %>
+  </table>
+</div>
+
+<div class="btn_new_article">
+<%= link_to "新しく記事を作成", new_blog_path, class: 'btn btn-default' %>
+</div>

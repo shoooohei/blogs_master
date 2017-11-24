@@ -19,7 +19,8 @@
                 <% if logged_in? %>
                   <li><%= link_to "記事一覧", blogs_path %></li>
                   <li><%= link_to "Logout", session_path(current_user.id), method: :delete %></li>
-                  <li><%= link_to "#{@current_user.name}さん", blogs_path %></li>
+                  <li><%= link_to "#{@current_user.name}さん", users_blogs_path %></li>
+                  <li><%= link_to "お気に入り一覧", favorite_blogs_path %></li>
                 <% else %>
                   <li><%= link_to "Sign up", new_user_path %></li>
                   <li><%= link_to "Login", new_session_path %></li>
@@ -35,12 +36,12 @@
       <div class="row">
         <div class="blog_title">
           <%= image_tag 'top.jpg', class: 'top_image col-xs-12' %>
-          <h1 id="title">Blog by Shohei</h1>
+          <h1 id="title">Blog</h1>
           <p id="app_explanation">記事の投稿・編集(更新)・一覧表示・削除機能があります！</p>
           <p id="saying">Life can be much broader once you discover one simple fact: Everything around you that you call life was made up by people that were no smarter than you and you can change it, you can influence it, you can build your own things that other people can use.</p>
         </div>
 
-        <h3>&nbsp</h3>
+        <h3>&nbsp;</h3>
         <% flash.each do |key, value| %>
           <%= content_tag(:div, value, class: "#{key}") %>
         <% end %>
