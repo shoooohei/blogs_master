@@ -18,12 +18,12 @@
 
                 <% if logged_in? %>
                   <li><%= link_to "記事一覧", blogs_path %></li>
-                  <li><%= link_to "Logout", session_path(current_user.id), method: :delete %></li>
+                  <li><%= link_to "ログアウト", session_path(current_user.id), method: :delete %></li>
                   <li><%= link_to "#{@current_user.name}さん", users_blogs_path %></li>
                   <li><%= link_to "お気に入り一覧", favorite_blogs_path %></li>
                 <% else %>
-                  <li><%= link_to "Sign up", new_user_path %></li>
-                  <li><%= link_to "Login", new_session_path %></li>
+                  <li><%= link_to "新規会員登録", new_user_path %></li>
+                  <li><%= link_to "ログイン", new_session_path %></li>
                 <% end %>
 
             </ul>
@@ -33,7 +33,7 @@
     </header>
 
     <div class="container">
-      <div class="row">
+      <div class="row content">
         <div class="blog_title">
           <%= image_tag 'top.jpg', class: 'top_image col-xs-12' %>
           <h1 id="title">Blog</h1>

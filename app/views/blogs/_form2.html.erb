@@ -1,13 +1,14 @@
 
 <h4>&nbsp;</h4>
-<div class="panel panel-default">
+<div class="panel panel-default row">
   <div class="panel-heading"><h4><%= @table_name %></h4>
   </div>
   <table class="table">
     <tr>
-        <th>タイトル</td>
-        <th>本文</th>
-        <th>作成日</th>
+        <th class="col-xs-2">タイトル</td>
+        <th class="col-xs-6">本文</th>
+        <th class="col-xs-2">作成日</th>
+        <th class="col-xs-2">&nbsp;</th>
     </tr>
     <% @blogs.each do |blog| %>
       <tr>
