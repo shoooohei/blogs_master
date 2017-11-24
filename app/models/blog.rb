@@ -3,8 +3,9 @@ class Blog < ApplicationRecord
             length:{ maximum: 140,
                     too_long: "は最大%{count}文字まで使用できます"}
 
+  belongs_to :user
   has_many :favorites, dependent: :destroy
   has_many :favorite_users, through: :favorites, source: :user
-  belongs_to :user
+
 
 end

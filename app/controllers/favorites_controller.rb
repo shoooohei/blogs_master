@@ -7,6 +7,7 @@ class FavoritesController < ApplicationController
 
   def destroy
     favorite = current_user.favorites.find_by(blog_id: params[:id]).destroy
+    #deleteメソッドでidと共に付帯して変数checkの値を:formatで取り出している。
     if params[:format] == "true"
       redirect_to favorite_blogs_path, notice: "#{favorite.blog.user.name}さんのブログをお気に入り解除しました"
     else
