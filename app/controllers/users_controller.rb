@@ -1,4 +1,5 @@
 class UsersController < ApplicationController
+  # before_action :set_user, only: [:edit, :update]
 
   def new
     @user = User.new
@@ -8,17 +9,28 @@ class UsersController < ApplicationController
     @user = User.new(user_params)
     if @user.save
       session[:user_id] = @user.id
+      Feed.create(user_id: @user.id)
       redirect_to blogs_path
     else
       render 'new'
     end
   end
 
-  def show
-    #has_many :blogs, belongs_to :userで結びついてuserのidの.blogでそのユーザーのブログ記事のレコードを全て取得できる
-    @blog = User.find(current_user.id).blogs.order(created_at: :desc)
-    @favorite = current_user.favorites.find_by(blog_id: @blog.id)
+  def edit
+    @feed = Feed.find_by(user_id: params[:id])
   end
+
+  # def update
+  #   #updateするのに引数はハッシュでなくてはいけないからuser_updateでハッシュを作った
+  #   # user_update = {name: user_edit[:name],
+  #   #               image: user_edit[:image]}
+  #   if @user.update_attributes(image: user_edit[:image])
+  #     redirect_to edit_user_path(@user.id), notice:"更新しました"
+  #   else
+  #     render 'edit'
+  #   end
+  # end
+
 
 
   private
@@ -26,5 +38,15 @@ class UsersController < ApplicationController
     params.require(:user).permit(:name, :email, :password,
                                  :password_confirmation)
   end
+
+  def user_edit
+    params.require(:user).permit(:name, :image)
+  end
+
+  def set_user
+    @user = User.find(params[:id])
+  end
+
+
 
 end

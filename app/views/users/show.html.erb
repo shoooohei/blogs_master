@@ -1,34 +1,33 @@
-
 <h3>&nbsp;</h3>
 <%= notice %>
+
+<%= form_with(model: @blog, url: blogs_path, local: true) do |form| %>
+  
 <div class="panel panel-default">
-  <div class="panel-heading"><%= current_user.name %>さんの記事一覧
+  <div class="panel-heading">
+    <%= @page_title %>
   </div>
   <table class="table">
     <tr>
-        <th>タイトル</td>
-        <th>本文</th>
-        <th>作成日</th>
+      <th>名前</th>
+      <td><%= @blog.name %></td>
     </tr>
-    <% @blog.each do |blog| %>
-      <tr>
-          <td><%= blog.title %></td>
-          <td><%= blog.content %></td>
-          <td><%= blog.created_at.strftime("%Y年%m月%d日 %H:%M") %></td>
-          <% if blog.user_id == current_user.id %>
-            <td><%= link_to "編集する", edit_blog_path(blog.id), class: 'btn btn-success' %></td>
-            <td><%= link_to "削除する", blog_path(blog.id),
-                    data: { confirm: "本当に削除してもよろしいですか？"},
-                    method: :delete, class: 'btn btn-warning' %>
-          <% end %>
-          </td>
-      </tr>
-    <% end %>
+    <tr>
+      <th><%= form.label :image %></th>
+      <td><%= form.file_field :image, id:"profile_image" %></td>
+    </tr>
+    <tr>
+      <th></th>
+      <td><%= form.submit "更新する", class: 'btn btn-default' %></td>
+    </tr>
   </table>
 </div>
 
-<div class="btn_new_article">
-<%= link_to "新しく記事を作成", new_blog_path, class: 'btn btn-default' %>
-</div>
 
-<h3>お気に入り一覧</h3>
+
+
+
+  <p></p>
+  <p>本文：</p>
+  <%= form.submit "更新する", class: 'btn btn-default' %>
+<% end %>

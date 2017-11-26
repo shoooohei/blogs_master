@@ -3,9 +3,11 @@
 <%= form_with(model: @blog, url: blogs_path, local: true) do |form| %>
   <%= form.hidden_field :title %>
   <%= form.hidden_field :content %>
+  <%= form.hidden_field :image %>
 
   <p>タイトル：<%= @blog.title %></p>
   <p>本文：<%= @blog.content %></p>
+  <p>画像：<%= @blog.image %></p>
   <%= form.submit "登録する", class: 'btn btn-default' %>
 <% end %>
 

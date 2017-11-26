@@ -1,0 +1,35 @@
+<%= form_with(model: @feed, local: true) do |form| %>
+
+<% if @feed.errors.any? %>
+  <div id="error_explanation">
+    <h4><%= @feed.errors.count %>件のエラーがあります</h4>
+    <ul>
+    <% @feed.errors.full_messages.each do |message| %>
+      <li><%= message %></li>
+    <% end %>
+    </ul>
+  </div>
+<% end %>
+
+
+  <div class="panel panel-default">
+    <div class="panel-heading">
+      <h4>アイコン画像の変更</h4>
+    </div>
+    <table class="table">
+      <tr>
+        <th><%= form.label "アイコン画像" %></th>
+        <td>
+          <%= image_tag "#{@feed.image}", width: 100 %>
+          <%= form.file_field :image %>
+        </td>
+      </tr>
+      <tr>
+        <th></th>
+        <td><%= form.submit "変更する", data: { confirm: "変更しますか？" }, class: 'btn btn-default' %></td>
+      </tr>
+    </table>
+  </div>
+
+
+<% end %>

@@ -10,6 +10,7 @@
       </div>
   <% end %>
 
+<div class="col-xs-9">
   <div class="panel panel-default">
     <div class="panel-heading">
       <%= @page_title %>
@@ -24,12 +25,36 @@
         <td><%= form.text_area :content %></td>
       </tr>
       <tr>
+        <th><%= form.label "画像" %></th>
+        <td>
+          <% if @show_image == "true" %>
+            <%= image_tag "#{@blog.image}", width: 100 %>
+          <% end %>
+          <%= form.file_field :image %>
+        </td>
+      </tr>
+      <tr>
         <th></th>
         <td><%= form.submit "#{@button}", class: 'btn btn-default' %></td>
       </tr>
     </table>
   </div>
   <div class="btn_back_to_index">
-<%= link_to "記事一覧へ", blogs_path, class: 'btn btn-default' %>
+  <%= link_to "記事一覧へ", blogs_path, class: 'btn btn-default' %>
+  </div>
 </div>
+
+
+<div class="col-xs-3">
+  <div class="thumbnail">
+    <%= image_tag "#{current_user.feed.image}" %>
+    <div class="caption">
+      <h4><%= "#{current_user.name}" %></h4>
+      <p><%= link_to "アイコンを変更", edit_user_path(current_user.id), class: "btn btn-default" %></p>
+    </div>
+  </div>
+</div>
+
+
+
 <% end %>

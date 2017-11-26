@@ -6,11 +6,15 @@ Rails.application.routes.draw do
       post :confirm
       get :favorite
       get :users
+      post :blog_images
+      
     end
   end
 
-  resources :users, only: [:new, :create]
+  resources :users, only: [:new, :create, :edit]
 
   resources :favorites, only: [:create, :destroy]
+
+  resources :feeds, only:[:create, :update]
 
 end

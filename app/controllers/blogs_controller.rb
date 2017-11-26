@@ -47,12 +47,14 @@ class BlogsController < ApplicationController
   def users
     @table_name = "#{current_user.name}さんの記事一覧"
     #has_many :blogs, belongs_to :userで結びついてuserのidの.blogでそのユーザーのブログ記事のレコードを全て取得できる
-    @blogs = User.find(current_user.id).blogs.order(created_at: :desc)
+    @blogs = current_user.blogs.order(created_at: :desc)
   end
 
   def edit
     @button = "更新する"
     @page_title = "記事を編集する"
+    @show_image = "true"
+
   end
 
   def update
@@ -71,7 +73,7 @@ class BlogsController < ApplicationController
 
   private
   def blog_params
-    params.require(:blog).permit(:title, :content)
+    params.require(:blog).permit(:title, :content, :image)
   end
 
   def set_blog
