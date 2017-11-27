@@ -5,3 +5,11 @@
 .table {
   table-layout: fixed;
 }
+
+.blog_title {
+  overflow: auto;
+}
+
+.blog_content {
+  overflow: hidden;
+}

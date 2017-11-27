@@ -7,18 +7,25 @@
     <table class="table">
       <tr>
           <th class="col-xs-2">タイトル</td>
-          <th class="col-xs-6">本文</th>
-          <th class="col-xs-2">作成日</th>
+          <th class="col-xs-4">本文</th>
+          <th class="col-xs-2">&nbsp;</th>
+          <th class="col-xs-2">&nbsp;</th>
           <th class="col-xs-2">&nbsp;</th>
       </tr>
       <% @blogs.each do |blog| %>
         <tr>
-            <td><%= blog.title %></td>
             <td>
-              <p><%= blog.content %></p><br>
-              <%= image_tag "#{blog.image}", width: 100 %>
+              <div class="blog_title">
+                <%= blog.title %>
+              </div>
             </td>
-            <td><%= blog.created_at.strftime("%Y年%m月%d日 %H:%M") %></td>
+            <td>
+              <div class="blog_content">
+                <p><%= blog.content %></p><br>
+                <%= image_tag "#{blog.image}", width: 100 %><br>
+                <p><%= blog.created_at.strftime("%Y年%m月%d日 %H:%M") %></p>
+              </div>
+            </td>
             <% if blog.user_id == current_user.id %>
               <td><%= link_to "編集する", edit_blog_path(blog.id), class: 'btn btn-success' %></td>
               <td><%= link_to "削除する", blog_path(blog.id),

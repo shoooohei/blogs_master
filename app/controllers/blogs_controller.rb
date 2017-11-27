@@ -30,7 +30,9 @@ class BlogsController < ApplicationController
     @button = "投稿する"
     @blog = Blog.new(blog_params)
     @blog.user_id = current_user.id
-    @blog.image.retrieve_from_cache! params[:cache][:image]
+    if params[:cache][:image].present?
+      @blog.image.retrieve_from_cache! params[:cache][:image]
+    end
       #現在ログインしているuserのidをblogのuser_idカラムに挿入する。
     if @blog.save
       redirect_to blogs_path, notice: "新しく記事を投稿しました"
