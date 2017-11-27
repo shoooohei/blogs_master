@@ -10,9 +10,7 @@ class BlogsController < ApplicationController
   def new
     @button = "投稿する"
     @page_title = "記事を新しく書く"
-    if params[:back]
-      binding.pry
-      
+    if params[:back]      
       @blog = Blog.new(blog_params)
     else
       @blog = Blog.new
