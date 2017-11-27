@@ -1,3 +1,7 @@
 .container {
   margin-bottom: 100px;
 }
+
+.table {
+  table-layout: fixed;
+}
