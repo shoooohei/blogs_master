@@ -7,7 +7,7 @@
 
   <p>タイトル：<%= @blog.title %></p>
   <p>本文：<%= @blog.content %></p>
-  <p>画像：<%= @blog.image.url %></p>
+  <p>画像：<%= image_tag (@blog.image.url), width: 100 %></p>
   <%= form.submit "登録する", class: 'btn btn-default' %>
 <% end %>
 

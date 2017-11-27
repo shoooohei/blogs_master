@@ -28,7 +28,7 @@
           <th><%= form.label "画像" %></th>
           <td>
             <% if @blog.image.present? %>
-              <%= image_tag "#{@blog.image}"  %>
+              <%= image_tag "#{@blog.image}", width: 100 %>
             <% end %>
             <%= form.file_field :image %>
             <%= form.hidden_field :image_cache %>
