@@ -48,10 +48,6 @@
       <% end %>
     </table>
   </div>
-
-  <div class="btn_new_article">
-  <%= link_to "新しく記事を作成", new_blog_path, class: 'btn btn-default' %>
-  </div>
 </div>
 
 <div class="col-xs-3">
@@ -60,6 +56,9 @@
     <div class="caption">
       <h4><%= "#{current_user.name}" %></h4>
       <p><%= link_to "アイコンを変更", edit_user_path(current_user.id), class: "btn btn-default" %></p>
+      <div class="btn_new_article">
+        <%= link_to "新しく記事を作成", new_blog_path, class: 'btn btn-default' %>
+      </div>
     </div>
   </div>
 </div>

@@ -40,9 +40,6 @@
         </tr>
       </table>
     </div>
-    <div class="btn_back_to_index">
-    <%= link_to "記事一覧へ", blogs_path, class: 'btn btn-default' %>
-    </div>
   </div>
 
 
@@ -52,6 +49,9 @@
       <div class="caption">
         <h4><%= "#{current_user.name}" %></h4>
         <p><%= link_to "アイコンを変更", edit_user_path(current_user.id), class: "btn btn-default" %></p>
+        <div class="btn_back_to_index">
+          <%= link_to "記事一覧へ", blogs_path, class: 'btn btn-default' %>
+        </div>
       </div>
     </div>
   </div>

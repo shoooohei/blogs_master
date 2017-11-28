@@ -7,7 +7,7 @@ Rails.application.routes.draw do
       get :favorite
       get :users
       post :blog_images
-      
+
     end
   end
 
@@ -16,5 +16,9 @@ Rails.application.routes.draw do
   resources :favorites, only: [:create, :destroy]
 
   resources :feeds, only:[:create, :update]
+
+  if Rails.env.development?
+    mount LetterOpenerWeb::Engine, at: "/letter_opener"
+  end
 
 end

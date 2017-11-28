@@ -29,16 +29,24 @@ class BlogsController < ApplicationController
   def create
     @button = "投稿する"
     @blog = Blog.new(blog_params)
+    #現在ログインしているuserのidをblogのuser_idカラムに挿入する。
     @blog.user_id = current_user.id
     if params[:cache][:image].present?
       @blog.image.retrieve_from_cache! params[:cache][:image]
     end
-      #現在ログインしているuserのidをblogのuser_idカラムに挿入する。
-    if @blog.save
-      redirect_to blogs_path, notice: "新しく記事を投稿しました"
-    else
-      render "new"
+
+
+    respond_to do |format|
+      if @blog.save
+        BlogMailer.blog_mail(@blog).deliver
+        format.html { redirect_to blogs_path, notice: "新しく記事を投稿しました" }
+        format.json { render :index, status: :created, location: @blog }
+      else
+        format.html { render :new }
+        format.json { render json: @blog.errors, status: :unprocessable_entity }
+      end
     end
+    
   end
 
   def favorite
